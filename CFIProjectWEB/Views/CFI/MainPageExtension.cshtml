@@ -1,0 +1,57 @@
+﻿@*Method to reference this partial view
+@Html.Partial("MainPageExtension")
+
+@{
+    Html.RenderPartial("MainPageExtension");
+}
+*@
+@using CFIProjectWEB.Models
+<div>
+    @using (Html.BeginForm("MainPage","CFI",FormMethod.Post))
+    {     
+        @Html.DropDownList("SortingBY",
+    new SelectList(new[] { "Campus", "Lecturer","Room" }),"--Sort By--")
+        <input id="SortingBY" type="submit" value="Sorting" />
+    }
+</div>
+<div>
+    @using (Html.BeginForm("MainPage", "CFI", FormMethod.Post))
+    {
+        @Html.DropDownList("FilteringBY",
+    new SelectList(new[] { "Campus", "Lecturer" }),"--Filter By--")
+        @Html.TextBox("FilteringValue");
+        <input id="FilteringBY" type="submit" value="Filtering" />
+    }
+</div>
+
+<div>
+    <table border="1">
+        <tr>
+            <th>CRN</th>
+            <th>SubjectCode</th>
+            <th class="text-center">CompetencyName</th>
+            <th>StartDate</th>
+            <th>EndDate</th>
+            <th>DayOfWeek</th>
+            <th>Time</th>
+            <th>Room</th>
+            <th>Lecturer</th>
+            <th>Campus</th>
+        </tr>
+        @foreach (CFIDetail d in ViewBag.Details)
+        {
+            <tr>
+                <td>@Html.Label(d.CRN)</td>
+                <td>@Html.Label(d.SubjectCode)</td>
+                <td>@Html.Label(d.CompetencyName)</td>
+                <td>@Html.Label(d.StartDate)</td>
+                <td>@Html.Label(d.EndDate)</td>
+                <td>@Html.Label(d.DayOfWeek)</td>
+                <td>@Html.Label(d.Time)</td>
+                <td>@Html.Label(d.Room)</td>
+                <td>@Html.Label(d.Lecturer)</td>
+                <td>@Html.Label(d.Campus)</td>
+            </tr>
+        }
+    </table>
+</div>

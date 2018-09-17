@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div>
+    @using (Html.BeginForm("MainPage", "CFI", FormMethod.Post))
+    {
+        @Html.DropDownList("ValidSubjects", ViewBag.ValidSubjectList as SelectList)
+        <input id="submitView" type="submit" value="View" />
+    }
+
+</div>
