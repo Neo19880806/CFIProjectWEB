@@ -29,7 +29,7 @@ namespace CFIProjectWEB.Controllers
             {
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "select DISTINCT `Course Title` from tblsiscrns_sr004_2016_s2 where Day_Of_Week != '0'";
+                cmd.CommandText = "select DISTINCT `Course Title` from tblSISCRNs_SR004_2016_S2 where Day_Of_Week != '0'";
 
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -49,9 +49,9 @@ namespace CFIProjectWEB.Controllers
         public List<CFIDetail> GetDetails(CFIValidSubject subject)
         {
             List<CFIDetail> list = new List<CFIDetail>();
-            String sqlQueryString = String.Format("select CRN,tblsubjectcompetencies.ITSubject,`Course Title`,`Meeting Start Date`," +
-            "`Meeting Finish Date`,Day_Of_Week,Time,Room,Lecturer,Campus from tblsiscrns_sr004_2016_s2 " +
-            "left join tblsubjectcompetencies on tblsiscrns_sr004_2016_s2.`Course Code`=tblsubjectcompetencies.CourseNumber " +
+            String sqlQueryString = String.Format("select CRN,tblSubjectCompetencies.ITSubject,`Course Title`,`Meeting Start Date`," +
+            "`Meeting Finish Date`,Day_Of_Week,Time,Room,Lecturer,Campus from tblSISCRNs_SR004_2016_S2 " +
+            "left join tblSubjectCompetencies on tblSISCRNs_SR004_2016_S2.`Course Code`=tblSubjectCompetencies.CourseNumber " +
             "where `Course Title` = \"{0}\" and Day_Of_Week!='0'",
             subject.Name);
 
@@ -113,7 +113,7 @@ namespace CFIProjectWEB.Controllers
                 connection.Open();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
